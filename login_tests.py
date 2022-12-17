@@ -4,6 +4,7 @@ import unittest
 import time
 # Local imports
 import login_page
+import products_page
 
 driver = webdriver.Chrome()
 driver.get(login_page.url)
@@ -16,6 +17,6 @@ time.sleep(2)
 login_page.login_button(driver).click()
 
 time.sleep(2)
-assert driver.find_element(By.ID, "root")
+assert products_page.hasLoaded(driver)
 
 driver.quit()

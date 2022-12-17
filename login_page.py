@@ -1,8 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import time 
 
 url = "https://www.saucedemo.com/"
 
@@ -24,3 +22,12 @@ def password_input(driver):
 	
 def login_button(driver):
 	return driver.find_element(By.ID, "login-button")
+
+def error(driver):
+	return driver.find_element(By.CSS_SELECTOR, "div.error")
+
+def check_error_message(driver, message)
+	return error(driver).find_element(By.XPATH, "//h3[contains(., '" + message + "')]")
+	
+def error_close_button(driver):
+	return error(driver).find_element(By.CLASS_NAME, "error-button")
