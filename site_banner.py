@@ -3,8 +3,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
-url = "https://www.saucedemo.com/inventory.html"
-
 def hasLoaded(driver):
 	try:
 		WebDriverWait(driver, 10).until(
@@ -22,6 +20,7 @@ def cart_link(driver):
 	return driver.find_element(By.CLASS_NAME, "shopping_cart_link")
 	
 def cart_badge_exists(driver):
+	# Cart badge appears when there is at least 1 item in the cart
 	# An assert on this list will be false if no results are returned
 	return driver.find_elements(By.CLASS_NAME, "shopping_cart_badge")
 	
