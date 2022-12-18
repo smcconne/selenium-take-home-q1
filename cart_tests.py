@@ -40,7 +40,7 @@ class CartPageTestsEmptyCart(unittest.TestCase):
 		self.assertTrue(cart_page.hasLoaded(self.driver))
 		self.assertFalse(site_banner.cart_badge_exists(self.driver))
 		
-	@unittest.skip("ABC-12345: checkout button should be disabled when cart is empty")
+	@unittest.skip("ABC-00001: checkout button should be disabled when cart is empty")
 	def test_checkout_disabled_when_cart_is_empty(self):
 		self.assertFalse(cart_page.checkout_button_exists(self.driver))
 

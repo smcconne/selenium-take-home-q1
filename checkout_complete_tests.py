@@ -8,6 +8,7 @@ import products_page
 import cart_page
 import checkout_page
 import checkout_overview_page
+import checkout_complete_page
 import site_banner
 
 class CheckoutOverviewPageTests(unittest.TestCase):
@@ -24,10 +25,10 @@ class CheckoutOverviewPageTests(unittest.TestCase):
 		checkout_overview_page.finish_button(self.driver).click()
 		self.assertTrue(checkout_complete_page.hasLoaded(self.driver))
 
-	def test_cart_is_empty(self):
+	def test_cart_is_empty_after_checkout(self):
 		self.assertFalse(site_banner.cart_badge_exists(self.driver))
 
-	def test_back_home_cart_remains_empty(self):
+	def test_back_home_after_checkout_cart_remains_empty(self):
 		checkout_complete_page.back_home_button(self.driver).click()
 		self.assertTrue(products_page.hasLoaded(self.driver))
 		self.assertFalse(site_banner.cart_badge_exists(self.driver))
