@@ -1,13 +1,12 @@
+# Python 3.9.7
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from faker import Faker
 import unittest
-import time
 # Local imports
 import login_page
 import products_page
 
-class LoginTests(unittest.TestCase):
+class LoginPageTests(unittest.TestCase):
 	def setUp(self):
 		self.driver = webdriver.Chrome()
 		self.driver.get(login_page.url)
@@ -24,12 +23,11 @@ class LoginTests(unittest.TestCase):
 		self.assertTrue(login_page.verify_error_message(self.driver, "Username and password do not match any user"))
 		login_page.error_close_button(self.driver).click()
 		self.assertFalse(login_page.check_error_exists(self.driver))
-		
 
 	def tearDown(self):
 		self.driver.quit()
 		
-class UnauthorizedAccessTests(unittest.TestCase):
+class UnauthorizedTests(unittest.TestCase):
 	def setUp(self):
 		self.driver = webdriver.Chrome()
 		self.driver.get(products_page.url)

@@ -1,3 +1,4 @@
+# Python 3.9.7
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
