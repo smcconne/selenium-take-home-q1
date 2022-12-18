@@ -21,15 +21,16 @@ class CheckoutOverviewPageTests(unittest.TestCase):
 		cart_page.checkout_button(self.driver).click()
 		self.fake = Faker()
 		checkout_page.submit_user_info(self.driver, self.fake.first_name(), self.fake.last_name(), self.fake.postcode())
-		self.assertTrue(checkout_overview_page.hasLoaded(self.driver))
+		checkout_overview_page.finish_button(self.driver).click()
+		self.assertTrue(checkout_complete_page.hasLoaded(self.driver))
 
-	def test_correct_item_displayed(self):
-		self.assertTrue(checkout_overview_page.verify_item_name(self.driver, "Bike Light"))
+	def test_cart_is_empty(self):
+		self.assertFalse(site_banner.cart_badge_exists(self.driver))
 
-	def test_cancel_retains_cart(self):
-		checkout_overview_page.cancel_button(self.driver).click()
+	def test_back_home_cart_remains_empty(self):
+		checkout_complete_page.back_home_button(self.driver).click()
 		self.assertTrue(products_page.hasLoaded(self.driver))
-		self.assertTrue(site_banner.cart_badge_exists(self.driver))
+		self.assertFalse(site_banner.cart_badge_exists(self.driver))
 
 	def tearDown(self):
 		self.driver.quit()

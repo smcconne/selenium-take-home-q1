@@ -24,7 +24,8 @@ def cancel_button(driver):
 def finish_button(driver):
 	return driver.find_element(By.CSS_SELECTOR, "button#finish")
 	
-def find_item_by_name(driver, search):
+def verify_item_name(driver, search):
 	item_name_list = driver.find_element(By.CLASS_NAME, "inventory_item_name")
 	
-	return item_name_list.find_element(By.XPATH, "//*[text()[contains(.,\"" + search + "\")]]//ancestor::div[@class = \"cart_item\"]")
+	# An assert on this list will be false if no results are returned
+	return item_name_list.find_elements(By.XPATH, "//*[text()[contains(.,\"" + search + "\")]]//ancestor::div[@class = \"cart_item\"]")

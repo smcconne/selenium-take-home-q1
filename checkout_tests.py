@@ -8,6 +8,7 @@ import products_page
 import cart_page
 import checkout_page
 import site_banner
+import error_module
 
 class CheckoutPageTests(unittest.TestCase):
 	def setUp(self):
@@ -24,26 +25,26 @@ class CheckoutPageTests(unittest.TestCase):
 	def test_error_no_first_name(self):
 		checkout_page.submit_user_info(self.driver, "", self.fake.last_name(), self.fake.postcode())
 		self.assertTrue(checkout_page.hasLoaded(self.driver))
-		self.assertTrue(checkout_page.check_error_exists(self.driver))
-		self.assertTrue(checkout_page.verify_error_message(self.driver, "First Name is required"))
-		login_page.error_close_button(self.driver).click()
-		self.assertFalse(checkout_page.check_error_exists(self.driver))
+		self.assertTrue(error_module.check_error_exists(self.driver))
+		self.assertTrue(error_module.verify_error_message(self.driver, "First Name is required"))
+		error_module.error_close_button(self.driver).click()
+		self.assertFalse(error_module.check_error_exists(self.driver))
 		
 	def test_error_no_last_name(self):
 		checkout_page.submit_user_info(self.driver, self.fake.first_name(), "", self.fake.postcode())
 		self.assertTrue(checkout_page.hasLoaded(self.driver))
-		self.assertTrue(checkout_page.check_error_exists(self.driver))
-		self.assertTrue(checkout_page.verify_error_message(self.driver, "Last Name is required"))
-		login_page.error_close_button(self.driver).click()
-		self.assertFalse(checkout_page.check_error_exists(self.driver))
+		self.assertTrue(error_module.check_error_exists(self.driver))
+		self.assertTrue(error_module.verify_error_message(self.driver, "Last Name is required"))
+		error_module.error_close_button(self.driver).click()
+		self.assertFalse(error_module.check_error_exists(self.driver))
 		
 	def test_error_no_postal_code(self):
 		checkout_page.submit_user_info(self.driver, self.fake.first_name(), self.fake.last_name(), "")
 		self.assertTrue(checkout_page.hasLoaded(self.driver))
-		self.assertTrue(checkout_page.check_error_exists(self.driver))
-		self.assertTrue(checkout_page.verify_error_message(self.driver, "Postal Code is required"))
-		login_page.error_close_button(self.driver).click()
-		self.assertFalse(checkout_page.check_error_exists(self.driver))
+		self.assertTrue(error_module.check_error_exists(self.driver))
+		self.assertTrue(error_module.verify_error_message(self.driver, "Postal Code is required"))
+		error_module.error_close_button(self.driver).click()
+		self.assertFalse(error_module.check_error_exists(self.driver))
 		
 	def test_cancel_retains_cart(self):
 		checkout_page.cancel_button(self.driver).click()
